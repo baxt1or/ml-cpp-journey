@@ -3,38 +3,47 @@
 #include <unordered_map>
 #include <vector>
 #include <numeric>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
 
-float sum(vector<float> &arr){
-    return accumulate(arr.begin(), arr.end(), 0.0);
-}
 
 
-float mean(vector<float> &arr){
-    int n = arr.size();
+
+class Value{
     
-    float total = sum(arr);
+private:
+    int data;
+public:
+    Value(int data){
+        this->data = data;
+    };
+    
+    int getData() const{
+        return data;
+    }
 
-    return total / n;
-}
+    Value operator+(Value &other) const {
+        return Value(this->data + other.data);
+    }
 
+};
 
-float power(float &n){
-    return n + n;
-}
 
 
 
 
 int main(){
-    
-    vector<float> x = {8.3252, 8.3014, 7.2574, 5.6431, 3.8462};
-    vector<float> y = {4.526 ,3.585, 3.521 ,3.413 ,3.422};
 
+    Value a = {1};
+    Value b = {2};
 
-    cout << (x.size() == y.size() ? "True": "False") << "\n";
+    Value c = a + b;
     
+    cout << c.getData() <<"\n";
+    
+
     return 0;
 }
